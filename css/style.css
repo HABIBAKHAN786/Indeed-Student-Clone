@@ -83,6 +83,16 @@ html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
 }
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Yeh right side ki faltu space ko chhupa dega */
+}
 
 body {
   font-family: var(--font-family);
@@ -1325,14 +1335,38 @@ h1, h2, h3, h4, h5, h6 {
   .dashboard-layout {
     grid-template-columns: 200px 1fr;
   }
+
+  .container {
+    padding: 0 20px;
+  }
+
+  .hero-title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .section-title {
+    font-size: 20px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* ── 28. RESPONSIVE — MOBILE (max 768px) ────────────────────── */
 @media (max-width: 768px) {
+  :root {
+    --font-size-base: 15px;
+    --font-size-lg: 16px;
+    --font-size-2xl: 20px;
+    --font-size-3xl: 24px;
+  }
+
   /* Stack the search bar vertically */
   .hero-search-bar {
     flex-direction: column;
     border-radius: var(--radius-md);
+    max-width: 100%;
   }
 
   .hero-search-input {
@@ -1340,16 +1374,35 @@ h1, h2, h3, h4, h5, h6 {
     border-bottom: 1px solid var(--color-border);
   }
 
+  .hero-search-input:last-of-type {
+    border-bottom: none;
+  }
+
   .hero-search-btn {
-    padding: 16px;
+    padding: 14px 16px;
     width: 100%;
     border-radius: 0 0 var(--radius-md) var(--radius-md);
   }
 
-  .hero-title { font-size: var(--font-size-2xl); }
+  .hero-title {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
 
-  /* Hide nav links on mobile */
-  .navbar-links { display: none; }
+  .hero-subtitle {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  .hero {
+    padding: 40px 16px;
+  }
+
+  /* Hide nav links on mobile, show toggle */
+  .navbar-links {
+    display: none;
+  }
+
   .navbar-links.open {
     display: flex;
     flex-direction: column;
@@ -1365,74 +1418,643 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 99;
   }
 
-  .navbar-toggle { display: flex; }
+  .navbar-toggle {
+    display: flex;
+  }
 
   /* Single column search layout */
   .search-layout {
     grid-template-columns: 1fr;
     padding: var(--space-sm);
+    gap: var(--space-md);
   }
 
   /* Sidebar becomes a collapsible panel */
   .filter-sidebar {
     position: static;
     display: none;
+    top: auto;
+    height: auto;
+    max-height: none;
   }
-  .filter-sidebar.open { display: block; }
+
+  .filter-sidebar.open {
+    display: block;
+  }
+
+  #mobile-filter-toggle {
+    display: block;
+  }
 
   /* Dashboard stacks vertically */
   .dashboard-layout {
     grid-template-columns: 1fr;
   }
+
   .dashboard-sidebar {
     border-right: none;
     border-bottom: 1px solid var(--color-border);
     display: flex;
     overflow-x: auto;
     padding: var(--space-sm) 0;
+    flex-wrap: nowrap;
   }
+
   .dashboard-sidebar-link {
     white-space: nowrap;
     border-right: none;
     border-bottom: 3px solid transparent;
     padding: var(--space-sm) var(--space-md);
+    min-width: fit-content;
   }
+
   .dashboard-sidebar-link.active {
     border-bottom-color: var(--color-primary);
     border-right: none;
   }
 
-  .dashboard-content { padding: var(--space-md); }
-  
-  .auth-card { padding: var(--space-lg); }
+  .dashboard-content {
+    padding: var(--space-md);
+  }
 
-  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .auth-card {
+    padding: var(--space-lg);
+    max-width: 100%;
+  }
 
-  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 
   .toast-container {
     left: var(--space-sm);
     right: var(--space-sm);
     bottom: var(--space-sm);
   }
-  .toast { min-width: unset; }
+
+  .toast {
+    min-width: unset;
+    max-width: 100%;
+  }
+
+  /* Job detail grid */
+  .job-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Improve button and input on mobile */
+  .btn {
+    padding: 12px 16px;
+    font-size: var(--font-size-sm);
+  }
+
+  .btn-lg {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    padding: 12px 12px;
+    font-size: 16px;
+  }
+
+  /* Section padding on mobile */
+  .section {
+    padding: 24px 16px;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  /* Better spacing for cards on mobile */
+  .card {
+    padding: 16px;
+  }
+
+  .dashboard-card {
+    padding: 16px;
+  }
+
+  /* Company cards and job cards */
+  .company-card {
+    padding: 16px;
+  }
+
+  .job-card {
+    padding: 16px;
+  }
+
+  /* Trending chips wrap better */
+  .trending-chips {
+    gap: 8px;
+  }
+
+  .trending-chip {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  /* Better table handling on mobile */
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  .data-table {
+    font-size: 12px;
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 10px 12px;
+  }
+
+  /* City buttons are more compact on mobile */
+  .city-btn {
+    min-width: 110px;
+    padding: 12px 14px;
+  }
 }
 
-/* ── 29. PRINT STYLES ───────────────────────────────────────── */
+/* ── 29. RESPONSIVE — SMALL MOBILE (max 480px) ────────────────── */
+@media (max-width: 480px) {
+  :root {
+    --font-size-base: 14px;
+    --font-size-lg: 15px;
+    --font-size-xl: 16px;
+    --font-size-2xl: 18px;
+    --font-size-3xl: 20px;
+  }
+
+  body {
+    padding: 0;
+  }
+
+  html, body {
+    overflow-x: hidden;
+  }
+
+  .navbar-inner {
+    height: 56px;
+    padding: 0 12px;
+  }
+
+  .navbar-logo {
+    font-size: var(--font-size-lg);
+  }
+
+  .hero {
+    padding: 32px 12px;
+  }
+
+  .hero-title {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  .hero-subtitle {
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+
+  .hero-search-bar {
+    margin: 0 auto 12px;
+  }
+
+  .hero-search-input svg {
+    width: 16px;
+    height: 16px;
+    margin-left: var(--space-sm);
+  }
+
+  .hero-search-input input {
+    padding: 12px 8px;
+    font-size: 14px;
+  }
+
+  .hero-search-btn {
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+
+  /* Trending chips more compact */
+  .trending-chips {
+    gap: 6px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .trending-chip {
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+
+  /* Section and container padding */
+  .section {
+    padding: 20px 12px;
+  }
+
+  .container {
+    padding: 0 12px;
+    max-width: 100%;
+  }
+
+  .section-title {
+    font-size: 18px;
+  }
+
+  .section-subtitle {
+    font-size: 13px;
+  }
+
+  /* Buttons full-width on small mobile */
+  .btn {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  .btn-full {
+    width: 100%;
+  }
+
+  .btn-lg {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  /* Forms */
+  .form-input,
+  .form-select,
+  .form-textarea {
+    padding: 10px 10px;
+    font-size: 16px;
+  }
+
+  .form-label {
+    font-size: 13px;
+  }
+
+  .form-group {
+    margin-bottom: 14px;
+  }
+
+  /* Cards are tighter on small mobile */
+  .card {
+    padding: 12px;
+  }
+
+  .job-card {
+    padding: 12px;
+  }
+
+  .company-card {
+    padding: 12px;
+  }
+
+  .dashboard-card {
+    padding: 12px;
+  }
+
+  .auth-card {
+    padding: 16px;
+    max-width: 100%;
+  }
+
+  .auth-logo-text {
+    font-size: 18px;
+  }
+
+  /* Job card adjustments */
+  .job-card-logo {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .job-card-title {
+    font-size: 14px;
+  }
+
+  .job-card-company {
+    font-size: 12px;
+  }
+
+  .job-card-meta {
+    font-size: 11px;
+    gap: 6px;
+  }
+
+  .job-card-snippet {
+    font-size: 12px;
+  }
+
+  /* Avatar sizes */
+  .avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .avatar-lg {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+  }
+
+  /* Badges and chips more compact */
+  .badge {
+    padding: 2px 8px;
+    font-size: 10px;
+  }
+
+  .skill-chip {
+    padding: 3px 10px;
+    font-size: 11px;
+  }
+
+  /* City buttons */
+  .city-btn {
+    min-width: 100px;
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+
+  .city-btn > div:first-child {
+    font-size: 20px;
+    margin-bottom: 2px;
+  }
+
+  /* Stats grid on very small phones */
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .stat-card {
+    padding: 12px;
+  }
+
+  .stat-card-number {
+    font-size: 24px;
+  }
+
+  .stat-card-label {
+    font-size: 11px;
+  }
+
+  /* Footer adjustments */
+  .footer {
+    padding: 20px 12px 16px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .footer-col-title {
+    font-size: 12px;
+  }
+
+  .footer-link {
+    font-size: 12px;
+  }
+
+  /* Toast adjustments */
+  .toast-container {
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+  }
+
+  .toast {
+    padding: 10px 12px;
+    font-size: 12px;
+    min-width: unset;
+  }
+
+  /* Dashboard sidebar */
+  .dashboard-sidebar-link {
+    padding: 8px 12px;
+    font-size: 12px;
+    gap: 8px;
+  }
+
+  .dashboard-sidebar-link span:last-child {
+    display: none;
+  }
+
+  .dashboard-sidebar-link.active span:last-child {
+    display: inline;
+  }
+
+  /* Tables */
+  .data-table {
+    font-size: 11px;
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 8px 10px;
+  }
+
+  /* Modal adjustments */
+  .modal-box {
+    padding: 16px;
+    max-width: 100%;
+    margin: 12px;
+  }
+
+  .modal-header {
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+  }
+
+  /* Job detail pane on small mobile */
+  .job-detail-pane {
+    position: static;
+    top: auto;
+    max-height: none;
+    padding: 16px;
+  }
+
+  .job-description h2 {
+    font-size: 16px;
+    margin: 12px 0 8px;
+  }
+
+  .job-description p {
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+
+  .job-description ul {
+    padding-left: 20px;
+    margin-bottom: 12px;
+  }
+
+  .job-description ul li {
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+
+  /* Hide filter sidebar on small mobile by default */
+  .filter-sidebar {
+    width: 100%;
+  }
+
+  /* Pagination on mobile */
+  .pagination {
+    gap: 6px;
+    padding: 16px 0;
+  }
+
+  .page-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  /* No results message */
+  .no-results {
+    padding: 24px 12px;
+  }
+
+  .no-results-icon {
+    font-size: 48px;
+  }
+
+  .no-results-title {
+    font-size: 16px;
+  }
+
+  /* Role tabs */
+  .role-tabs {
+    gap: 2px;
+  }
+
+  .role-tab {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  /* Search bar at jobs page */
+  #jobs-search-form > div {
+    flex-direction: column;
+  }
+
+  #jobs-search-form > div > div {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  #jobs-search-form > div > div:last-of-type {
+    border-bottom: none;
+  }
+
+  #jobs-search-form button {
+    width: 100%;
+  }
+}
+
+/* ── 30. ULTRA-SMALL DEVICES (max 360px) ────────────────────── */
+@media (max-width: 360px) {
+  :root {
+    --font-size-base: 13px;
+    --font-size-sm: 12px;
+    --font-size-lg: 14px;
+    --font-size-xl: 15px;
+    --font-size-2xl: 16px;
+  }
+
+  .navbar-inner {
+    height: 52px;
+  }
+
+  .hero {
+    padding: 24px 10px;
+  }
+
+  .hero-title {
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+
+  .hero-subtitle {
+    font-size: 12px;
+  }
+
+  .section {
+    padding: 16px 10px;
+  }
+
+  .container {
+    padding: 0 10px;
+  }
+
+  .btn {
+    padding: 9px 12px;
+    font-size: 12px;
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    padding: 9px 9px;
+  }
+
+  .card,
+  .job-card,
+  .company-card,
+  .dashboard-card {
+    padding: 10px;
+  }
+
+  .auth-card {
+    padding: 14px;
+  }
+
+  .trending-chip {
+    padding: 3px 8px;
+    font-size: 10px;
+  }
+
+  .city-btn {
+    min-width: 90px;
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+
+  .city-btn > div:first-child {
+    font-size: 18px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── PRINT STYLES ───────────────────────────────────────────── */
 @media print {
   .navbar, .footer, .filter-sidebar { display: none; }
   .job-detail-pane { box-shadow: none; border: none; }
 }
 
-/* ── 30. FOCUS VISIBLE (Accessibility) ──────────────────────── */
-/* Show focus ring only for keyboard navigation, not mouse clicks */
+/* ── FOCUS VISIBLE (Accessibility) ──────────────────────── */
 :focus-visible {
   outline: 3px solid var(--color-primary);
   outline-offset: 2px;
 }
 :focus:not(:focus-visible) { outline: none; }
 
-/* ── 31. SCROLLBAR GLOBAL ───────────────────────────────────── */
+/* ── SCROLLBAR GLOBAL ───────────────────────────────────– */
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: var(--color-bg); }
 ::-webkit-scrollbar-thumb { 
@@ -1441,7 +2063,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 ::-webkit-scrollbar-thumb:hover { background: #aaa; }
 
-/* ── 32. MISC HELPERS ───────────────────────────────────────── */
+/* ── MISC HELPERS ───────────────────────────────────────– */
 .visually-hidden {
   position: absolute;
   width: 1px; height: 1px;
@@ -1460,49 +2082,9 @@ h1, h2, h3, h4, h5, h6 {
 .no-results-icon { font-size: 64px; margin-bottom: var(--space-md); }
 .no-results-title { font-size: var(--font-size-xl); font-weight: 700; margin-bottom: var(--space-sm); }
 
-.job-detail-grid { display: grid; grid-template-columns: 1fr 340px; gap: 24px; align-items: start; }
-@media (max-width: 900px) { .job-detail-grid { grid-template-columns: 1fr; } }
-
-
-/* 1. Laptops & Small Desktops (Under 1024px) */
-@media (max-width: 1024px) {
-    .container {
-        width: 90%; /* Content ko sides se thora margin mil jayega */
-    }
-}
-
-/* 2. Tablets & iPads (Under 768px) */
-@media (max-width: 768px) {
-    /* Agur koi sidebar hai ya flex row hai, to use column me convert karein */
-    .hero-section, .navbar, .grid-layout {
-        flex-direction: column;
-        display: block;
-    }
-    
-    /* Font sizes ko thora chota karein taake text break na ho */
-    h1 {
-        font-size: 2rem;
-    }
-    
-    /* Navigation menu ko hide karke burger menu ka socha ja sakta hai */
-    .nav-links {
-        display: none; 
-    }
-}
-
-/* 3. Mobile Devices (Under 480px) */
-@media (max-width: 480px) {
-    body {
-        padding: 10px; /* Choti screens par extra padding spacing handle karti hai */
-    }
-    
-    h1 {
-        font-size: 1.5rem;
-    }
-    
-    /* Buttons aur inputs ko full width kar dein taake touch karne me aasani ho */
-    .btn, input {
-        width: 100%;
-        margin-bottom: 10px;
-    }
+.job-detail-grid { 
+  display: grid; 
+  grid-template-columns: 1fr 340px; 
+  gap: 24px; 
+  align-items: start; 
 }
