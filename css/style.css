@@ -2088,3 +2088,51 @@ h1, h2, h3, h4, h5, h6 {
   gap: 24px; 
   align-items: start; 
 }
+/* ── THE ULTIMATE RESET FIX (UPDATED) ── */
+@media (max-width: 768px) {
+  /* 1. Dono main structures ko zabardasti display blocks mein force karein taake dono sides wapas dikhein */
+  .search-layout,
+  .job-detail-grid {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 12px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 2. Left Box (Jobs List) ko poori screen width par show karein */
+  .jobs-list,
+  #job-list-container {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-bottom: 24px !important;
+  }
+
+  /* 3. Right Box (Job Detail Pane) ko invisible hone se rokein aur automatic neeche le aayein */
+  .job-detail-pane,
+  .job-detail-pane.right-pane,
+  #job-detail-main {
+    display: block !important; /* Agar desktop code isay hide kar raha tha to ye zinda kar dega */
+    width: 100% !important;
+    max-width: 100% !important;
+    position: static !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 0 0 20px 0 !important;
+    padding: 16px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 4. Table card metadata overlap safety net */
+  .job-overview-card,
+  .job-overview-card table,
+  .job-overview-card tbody,
+  .job-overview-card tr,
+  .job-overview-card td {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    box-sizing: border-box !important;
+  }
+}
