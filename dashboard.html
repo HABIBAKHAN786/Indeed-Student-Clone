@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Dashboard — Indeed Pakistan Clone</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="dashboard">
+  <div id="app-layout" style="display:flex;flex-direction:column;min-height:100vh;">
+    <div id="banner-slot"></div>
+    <div id="navbar-slot"></div>
+    <main style="flex:1;">
+      <div class="dashboard-layout">
+        <aside class="dashboard-sidebar">
+          <div style="padding:16px 20px;border-bottom:1px solid #e5e7eb;margin-bottom:8px;" id="sidebar-user-info"></div>
+          <button class="dashboard-sidebar-link active" data-section="overview"><span>📊</span><span>Overview</span></button>
+          <button class="dashboard-sidebar-link" data-section="profile"><span>👤</span><span>My Profile</span></button>
+          <button class="dashboard-sidebar-link" data-section="resume"><span>📄</span><span>Resume / CV</span></button>
+          <button class="dashboard-sidebar-link" data-section="saved"><span>❤️</span><span>Saved Jobs</span></button>
+          <button class="dashboard-sidebar-link" data-section="applications"><span>📬</span><span>My Applications</span></button>
+          <div style="padding:16px 20px;margin-top:auto;">
+            <a href="jobs.html" class="btn btn-primary btn-full btn-sm">🔍 Browse Jobs</a>
+          </div>
+        </aside>
+        <main class="dashboard-content" id="dashboard-content"></main>
+      </div>
+    </main>
+    <div id="footer-slot"></div>
+    <div id="backend-btn-slot"></div>
+    <div id="toast-container" class="toast-container" role="alert" aria-live="polite" style="display:none;"></div>
+  </div>
+
+  <script src="js/helpers.js"></script>
+  <script src="js/seed.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/jobs.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/script.js"></script>
+  <script>
+    IndeedApp.initApp();
+    IndeedAuth.subscribe(function () {
+      var user = IndeedAuth.getUser();
+      var info = document.getElementById('sidebar-user-info');
+      if (user && info) {
+        info.innerHTML = '<div class="avatar" style="margin-bottom:8px;">' + user.name.charAt(0).toUpperCase() + '</div>' +
+          '<div style="font-weight:700;font-size:14px;">' + user.name + '</div>' +
+          '<div style="font-size:12px;color:#767676;">' + user.email + '</div>' +
+          '<span class="badge badge-primary" style="margin-top:6px;">Job Seeker</span>';
+      }
+    });
+    var u = IndeedAuth.getUser();
+    if (u) {
+      document.getElementById('sidebar-user-info').innerHTML = '<div class="avatar" style="margin-bottom:8px;">' + u.name.charAt(0).toUpperCase() + '</div>' +
+        '<div style="font-weight:700;font-size:14px;">' + u.name + '</div><div style="font-size:12px;color:#767676;">' + u.email + '</div>' +
+        '<span class="badge badge-primary" style="margin-top:6px;">Job Seeker</span>';
+    }
+    IndeedDashboard.initSeekerDashboard();
+  </script>
+</body>
+</html>

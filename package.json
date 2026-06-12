@@ -1,0 +1,9 @@
+{
+  "name": "indeed-pakistan-clone",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Indeed Pakistan learning project — pure HTML, CSS, and JavaScript",
+  "scripts": {
+    "start": "npx --yes serve . -p 3000"
+  }
+}

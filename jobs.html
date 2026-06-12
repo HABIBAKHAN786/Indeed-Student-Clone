@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Find Jobs — Indeed Pakistan Clone</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="jobs">
+  <div id="app-layout" style="display:flex;flex-direction:column;min-height:100vh;">
+    <div id="banner-slot"></div>
+    <div id="navbar-slot"></div>
+    <main style="flex:1;">
+      <div style="background:var(--color-bg);min-height:calc(100vh - 64px);">
+        <div style="background:#2557a7;padding:12px 16px;position:sticky;top:64px;z-index:90;box-shadow:0 2px 8px rgba(0,0,0,0.2);">
+          <form id="jobs-search-form">
+            <div style="display:flex;background:white;border-radius:8px;overflow:hidden;max-width:900px;margin:0 auto;box-shadow:0 2px 8px rgba(0,0,0,0.15);">
+              <div style="display:flex;align-items:center;flex:1;border-right:1px solid #e5e7eb;">
+                <svg style="margin:0 12px;flex-shrink:0;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#767676" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                <input type="text" id="jobs-search-input" placeholder="Job title, keywords, or company" style="flex:1;padding:12px 8px;border:none;font-size:14px;font-family:inherit;min-width:0;" />
+                <button type="button" id="clear-search" style="padding:0 8px;background:none;border:none;color:#767676;cursor:pointer;font-size:18px;display:none;">×</button>
+              </div>
+              <div style="display:flex;align-items:center;flex:1;">
+                <svg style="margin:0 12px;flex-shrink:0;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#767676" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <input type="text" id="jobs-location-input" placeholder="City or 'remote'" style="flex:1;padding:12px 8px;border:none;font-size:14px;font-family:inherit;min-width:0;" />
+                <button type="button" id="clear-location" style="padding:0 8px;background:none;border:none;color:#767676;cursor:pointer;font-size:18px;display:none;">×</button>
+              </div>
+              <button type="submit" style="padding:12px 24px;background:#2557a7;color:white;border:none;font-weight:700;font-size:14px;cursor:pointer;font-family:inherit;white-space:nowrap;">Find Jobs</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="search-layout">
+          <aside>
+            <button class="btn btn-outline btn-full" id="mobile-filter-toggle" style="margin-bottom:12px;display:none;">▼ Show Filters</button>
+            <div class="filter-sidebar" id="filter-sidebar"></div>
+          </aside>
+          <main>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;padding:0 4px;">
+              <div>
+                <span id="results-count" style="font-weight:700;font-size:18px;">0</span>
+                <span id="results-label" style="color:#767676;font-size:14px;"> jobs</span>
+              </div>
+              <select class="form-select" style="width:auto;padding:6px 32px 6px 12px;font-size:13px;">
+                <option>Most relevant</option>
+                <option>Date posted</option>
+                <option>Salary (high to low)</option>
+                <option>Salary (low to high)</option>
+              </select>
+            </div>
+            <div class="jobs-list" id="jobs-list"></div>
+            <div class="pagination" id="pagination" style="display:none;"></div>
+          </main>
+          <div id="jobs-detail-pane"></div>
+        </div>
+      </div>
+    </main>
+    <div id="footer-slot"></div>
+    <div id="backend-btn-slot"></div>
+    <div id="toast-container" class="toast-container" role="alert" aria-live="polite" style="display:none;"></div>
+  </div>
+
+  <script src="js/helpers.js"></script>
+  <script src="js/seed.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/jobs.js"></script>
+  <script src="js/script.js"></script>
+  <script>
+    IndeedApp.initApp();
+    IndeedJobs.initJobsPage();
+  </script>
+</body>
+</html>

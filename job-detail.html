@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Job Details — Indeed Pakistan Clone</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="job-detail">
+  <div id="app-layout" style="display:flex;flex-direction:column;min-height:100vh;">
+    <div id="banner-slot"></div>
+    <div id="navbar-slot"></div>
+    <main style="flex:1;">
+      <div style="background:var(--color-bg);min-height:calc(100vh - 64px);">
+        <div style="background:white;border-bottom:1px solid #e5e7eb;padding:12px 20px;">
+          <div class="container">
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:#767676;">
+              <a href="index.html" style="color:#2557a7;font-weight:600;">Home</a>
+              <span>›</span>
+              <a href="jobs.html" style="color:#2557a7;font-weight:600;">Jobs</a>
+              <span>›</span>
+              <span id="breadcrumb-title">Job Details</span>
+            </div>
+          </div>
+        </div>
+        <div class="container" style="padding:24px 16px;">
+          <div class="job-detail-grid">
+            <div id="job-detail-main"></div>
+            <aside id="job-detail-sidebar"></aside>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div id="footer-slot"></div>
+    <div id="backend-btn-slot"></div>
+    <div id="toast-container" class="toast-container" role="alert" aria-live="polite" style="display:none;"></div>
+  </div>
+
+  <script src="js/helpers.js"></script>
+  <script src="js/seed.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/jobs.js"></script>
+  <script src="js/script.js"></script>
+  <script>
+    IndeedApp.initApp();
+    IndeedJobs.initJobDetailPage();
+  </script>
+</body>
+</html>

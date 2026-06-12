@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Backend Code Reference — Indeed Pakistan Clone</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="backend-code">
+  <div style="min-height:100vh;display:flex;flex-direction:column;">
+    <div style="background:#1e293b;color:white;padding:20px;">
+      <div class="container">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <div>
+            <h1 style="font-size:20px;font-weight:800;margin-bottom:4px;">🖥️ Backend Source Code Reference</h1>
+            <p style="font-size:13px;color:#94a3b8;">Node.js + Express + MongoDB + Mongoose — Complete backend for this project</p>
+          </div>
+          <a href="index.html" class="btn btn-outline" style="color:white;border-color:#475569;">← Back to App</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex:1;">
+      <div style="width:280px;background:#0f172a;color:#94a3b8;padding:16px;flex-shrink:0;overflow-y:auto;">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;color:#64748b;">Project Files</div>
+        <div id="backend-file-list"></div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;overflow:hidden;">
+        <div style="background:#1e293b;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #334155;">
+          <div>
+            <code id="backend-file-path" style="font-size:14px;color:#60a5fa;"></code>
+            <p id="backend-file-desc" style="font-size:12px;color:#94a3b8;margin-top:2px;"></p>
+          </div>
+          <button class="btn btn-sm" id="backend-copy-btn" style="background:#334155;color:white;border:none;">📋 Copy</button>
+        </div>
+        <pre style="flex:1;overflow:auto;background:#0f172a;color:#e2e8f0;padding:20px;margin:0;font-size:13px;font-family:'Fira Code','Courier New',monospace;line-height:1.7;tab-size:2;"><code id="backend-code-content"></code></pre>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/helpers.js"></script>
+  <script src="js/backend-code.js"></script>
+  <script>
+    IndeedBackend.initBackendCodePage();
+  </script>
+</body>
+</html>

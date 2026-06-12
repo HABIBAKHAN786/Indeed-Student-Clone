@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account — Indeed Pakistan Clone</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="signup">
+  <div class="auth-page">
+    <div class="auth-card" style="max-width:520px;">
+      <div class="auth-logo">
+        <div class="auth-logo-text"><span style="background:#2557a7;color:white;padding:2px 8px;border-radius:4px;margin-right:1px;">in</span>deed</div>
+        <p style="font-size:14px;color:#767676;margin-top:8px;">Pakistan's #1 Job Platform</p>
+      </div>
+
+      <div class="role-tabs" role="tablist">
+        <button type="button" role="tab" class="role-tab active" id="role-seeker" aria-selected="true">👤 Job Seeker</button>
+        <button type="button" role="tab" class="role-tab" id="role-employer" aria-selected="false">🏢 Employer</button>
+      </div>
+
+      <h2 style="font-size:20px;font-weight:700;margin-bottom:4px;">Create your account</h2>
+      <p id="signup-role-desc" style="color:#767676;font-size:13px;margin-bottom:24px;">Create an account to apply for jobs and track applications.</p>
+
+      <form id="signup-form" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="signup-name">Full Name *</label>
+          <input id="signup-name" type="text" class="form-input" placeholder="Your full name" />
+          <span id="name-error" class="form-error signup-field-error"></span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="signup-email">Email address *</label>
+          <input id="signup-email" type="email" class="form-input" placeholder="your@email.com" autocomplete="email" />
+          <span id="signup-email-error" class="form-error signup-field-error"></span>
+        </div>
+
+        <div class="form-group" id="company-group" style="display:none;">
+          <label class="form-label" for="signup-company">Company Name *</label>
+          <input id="signup-company" type="text" class="form-input" placeholder="Your company name" />
+          <span id="company-error" class="form-error signup-field-error"></span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="signup-password">Password *</label>
+          <div style="position:relative;">
+            <input id="signup-password" type="password" class="form-input" placeholder="Min 8 chars, 1 uppercase, 1 number" autocomplete="new-password" />
+            <button type="button" id="toggle-password" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:16px;color:#767676;">👁️</button>
+          </div>
+          <span id="password-error" class="form-error signup-field-error"></span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="signup-confirm">Confirm Password *</label>
+          <input id="signup-confirm" type="password" class="form-input" placeholder="Re-enter your password" autocomplete="new-password" />
+          <span id="confirm-error" class="form-error signup-field-error"></span>
+        </div>
+
+        <div id="signup-general-error" style="display:none;background:#fee2e2;border:1px solid #fca5a5;border-radius:8px;padding:12px;font-size:14px;color:#991b1b;margin-bottom:16px;align-items:center;gap:8px;"></div>
+
+        <button type="submit" class="btn btn-primary btn-full btn-lg" id="signup-submit" style="margin-bottom:16px;">Create Account</button>
+      </form>
+
+      <div style="text-align:center;font-size:14px;">
+        Already have an account?
+        <a href="login.html" style="color:#2557a7;font-weight:700;">Sign in →</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container" role="alert" aria-live="polite" style="display:none;"></div>
+
+  <script src="js/helpers.js"></script>
+  <script src="js/seed.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/script.js"></script>
+  <script>
+    IndeedSeed.seedDemoAccounts();
+    IndeedAuth.restoreSession();
+    IndeedAuth.initSignupPage();
+  </script>
+</body>
+</html>
